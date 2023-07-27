@@ -1,5 +1,52 @@
-SEGMENTED SIEVE
+import java.util.*;
 
+public class LexicographicallyFirstPalindromicString {
+    
+    public static void main(String[] args) {
+        
+        Scanner inputScanner = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String input = inputScanner.nextLine();
+        
+        String palindromicString = findLexicographicallyFirstPalindromicString(input);
+        
+        System.out.println("The lexicographically first palindromic string is: " + palindromicString);
+        
+        inputScanner.close();
+    }
+    
+    public static String findLexicographicallyFirstPalindromicString(String input) {
+        
+        int[] charCount = new int[26]; // count of each character in the input string
+        
+        // count the occurrence of each character in the input string
+        for (int i = 0; i < input.length(); i++) {
+            charCount[input.charAt(i) - 'a']++;
+        }
+        
+        String palindrome = ""; // empty string to store the result
+        
+        // add the characters to the result string in lexicographic order
+        for (int i = 0; i < 26; i++) {
+            char c = (char) ('a' + i);
+            int count = charCount[i];
+            
+            if (count % 2 == 1) { // add the single middle character if any
+                palindrome = palindrome + c;
+                count--;
+            }
+            
+            // add the remaining characters in pairs
+            for (int j = 0; j < count / 2; j++) {
+                palindrome = c + palindrome + c;
+            }
+        }
+        
+        return palindrome;
+    }
+}
+=========================================================
+SEGMENTED SIEVE
 import java.util.*;
 public class Main {
     static void SegSieve(int l, int h) {
@@ -18,7 +65,6 @@ public class Main {
         }
         System.out.println();
     }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the lower bound (l): ");
@@ -32,7 +78,6 @@ public class Main {
 }
 ===============================================================
 EULHER PHI
-
 import java.util.*;
 class Main{
     public static int phi(int n){
@@ -56,54 +101,43 @@ class Main{
         int phi_n=phi(n);
         System.out.println("phi("+n+")= "+phi_n);
         s.close();
-
-
 }
 }
 ==============================
 SABROGRAMMATIC NUMBER
-
 import java.util.*;
 class Main{
     public static boolean isStrobogrammatic(String number) {
         char[] mirror = {'0', '1', ' ', ' ', ' ', ' ', '9', ' ', '8', '6'};
         int left = 0;
         int right = number.length() - 1;
-
         while (left <= right) {
             char leftDigit = number.charAt(left);
             char rightDigit = number.charAt(right);
             char mirrorLeft = mirror[leftDigit - '0'];
             char mirrorRight = mirror[rightDigit - '0'];
-
             if (mirrorLeft == ' ' || mirrorRight == ' ' || mirrorLeft != rightDigit || mirrorRight != leftDigit) {
                 return false;
             }
-
             left++;
             right--;
         }
         return true;
     }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String number = scanner.nextLine();
         scanner.close();
-
         if (isStrobogrammatic(number)) {
             System.out.println("The number is strobogrammatic.");
         } else {
             System.out.println("The number is not strobogrammatic.");
         }
     }
-
 }
 ============================================================================
 CHINESE REMAINDER
-
 import java.util.*;
-
 class Main {
     static int findMinX(int num[], int rem[], int k) {
         int x = 1;
@@ -113,35 +147,28 @@ class Main {
                 if (x % num[j] != rem[j])
                     break;
             }
-
             if (j == k)
                 return x;
             x++;
         }
     }
-
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
         int k = scanner.nextInt();
-
         int[] num = new int[k];
         int[] rem = new int[k];
-
         for (int i = 0; i < k; i++) {
             num[i] = scanner.nextInt();
         }
-
         for (int i = 0; i < k; i++) {
             rem[i] = scanner.nextInt();
         }
-
         System.out.println("x is " + findMinX(num, rem, k));
         scanner.close();
     }
 }
 ===============================================================
 ALICE APPLE
-
 import java.util.*;
 class Main{
      public static void main (String args[] ){
@@ -151,24 +178,19 @@ class Main{
          while(sum<apple){
              cnt++;
              sum+=(12*cnt*cnt);
-
          }
          System.out.println((8*(cnt)));
-
      }
 }
 ================================================================
 TOGGLE THE SWITCH (DOOR PROBLEM)
-
 import java.util.*;
-
 class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         boolean b[] = new boolean[n + 1];
         int i, j, c = 0, o = 0;
-
         for (i = 1; i <= n; i++) {
             for (j = i; j * i <= n; j++) {
                 if (b[j] == false) {
@@ -178,7 +200,6 @@ class Main {
                 }
             }
         }
-
         for (i = 1; i <= n; i++) {
             if (b[i] == true) {
                 c++;
@@ -186,16 +207,13 @@ class Main {
                 o++;
             }
         }
-
         System.out.println("No Of Doors open " + c);
         System.out.println("No Of Doors closed " + o);
     }
 }
 ========================================================
 BINARY PALINDROME
-
 import java.util.*;
-
 class Main {
     public static boolean isBinaryPalindrome(int x) {
         int reversed = 0;
@@ -207,7 +225,6 @@ class Main {
         }
         return reversed == original;
     }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int x = sc.nextInt();
@@ -220,7 +237,6 @@ class Main {
 }
 ============================================================
 BOOTH ALGORITHM
-
 import java.util.*;
 class Main{
     public static int multiply(int n1, int n2) {
@@ -243,7 +259,6 @@ class Main{
         }
         return P;
     }
-
      public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int n1 = scan.nextInt();
@@ -254,13 +269,11 @@ class Main{
 }
 ==================================================
 EUCLID ALGORITHM (GCD)
-
 import java.util.*;
 class Main {
     public static int gcd(int a, int b) {
         if (a == 0)
             return b;
-
         return gcd(b % a, a);
     }
     public static void main(String[] args) {
@@ -269,15 +282,12 @@ class Main {
         int b = sc.nextInt();
         int g = gcd(a, b);
         System.out.println("GCD(" + a + " , " + b + ") = " + g);
-
         sc.close();
     }
 }
 =====================================================
 KARATSUBA ALGORTIHM
-
 import java.util.*;
-
 class Main {
     public static long karatsubaMultiply(long x, long y) {
         if (x < 10 || y < 10) {
@@ -285,24 +295,19 @@ class Main {
         }
         int n = Math.max(Long.toString(x).length(), Long.toString(y).length());
         int half = (n + 1) / 2;
-
         long a = x / (long) Math.pow(10, half);
         long b = x % (long) Math.pow(10, half);
         long c = y / (long) Math.pow(10, half);
         long d = y % (long) Math.pow(10, half);
-
         long ac = karatsubaMultiply(a, c);
         long bd = karatsubaMultiply(b, d);
         long adbc = karatsubaMultiply(a + b, c + d) - ac - bd;
-
         return (long) (ac * Math.pow(10, 2 * half) + adbc * Math.pow(10, half) + bd);
     }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         long x = sc.nextLong();
         long y = sc.nextLong();
-
         long product = karatsubaMultiply(x, y);
         System.out.println("Product: " + product);
         sc.close();
@@ -310,7 +315,6 @@ class Main {
 }
 ========================================================
 FLIPPING A BIT
-
 import java.util.*;
 public class Main {
     public static int longestConsecutiveOnes(int n) {
@@ -318,7 +322,6 @@ public class Main {
         int maxLength = 0;
         int currentLength = 0;
         int previousLength = 0;
-
         for (char bit : binary.toCharArray()) {
             if (bit == '1') {
                 currentLength++;
@@ -331,7 +334,6 @@ public class Main {
         maxLength = Math.max(maxLength, currentLength + previousLength + 1);
         return maxLength;
     }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -340,41 +342,30 @@ public class Main {
         sc.close();
     }
 }
-
-
 ###############################
-
 BYTE SWAP
 import java.util.*;
-
 public class Main {
     public static byte swapNibbles(byte b) {
         byte upperNibble = (byte) ((b & 0xF0) >>> 4);
         byte lowerNibble = (byte) (b & 0x0F);
-        byte swappedByte = (byte) ((lowerNibble << 4) | upperNibble);
-        
+        byte swappedByte = (byte) ((lowerNibble << 4) | upperNibble);        
         return swappedByte;
     }
-
     public static void main(String[] args) {
         byte byteValue = (byte) 0xAB;  
         byte swappedByte = swapNibbles(byteValue);
-
         System.out.println("Original byte: " + Integer.toBinaryString(byteValue & 0xFF));
         System.out.println("Swapped byte: " + Integer.toBinaryString(swappedByte & 0xFF));
     }
 }
-
 =====================================================
 BLOCK SWAP ALGORITHM
-
 import java.util.*;
-
 public class Main {
     public static void leftRotate(int arr[], int d, int n) {
         leftRotateRec(arr, 0, d, n);
     }
-
     public static void leftRotateRec(int arr[], int i, int d, int n) {
         if (d == 0 || d == n)
             return;
@@ -391,7 +382,6 @@ public class Main {
             leftRotateRec(arr, n - d + i, 2 * d - n, d);
         }
     }
-
     public static void printArray(int arr[], int size) {
         int i;
         for (i = 0; i < size; i++)
@@ -406,7 +396,6 @@ public class Main {
             arr[si + i] = temp;
         }
     }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
             System.out.print("Enter the number of elements in the array: ");
@@ -421,33 +410,26 @@ public class Main {
             leftRotate(arr, d, n);
             System.out.print("Rotated array: ");
             printArray(arr, n);
-
             scanner.close();
-
     }
 }
 ======================================================
 MAXIMUM PRODUCT SUBARRAY
-
 import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the number of elements in the array: ");
         int n = sc.nextInt();
-
         int[] a = new int[n];
         System.out.println("Enter the elements of the array:");
         for (int i = 0; i < n; i++) {
             a[i] = sc.nextInt();
         }
-
         int max = a[0];
         int m = a[0];
         int min = a[0];
         int temp = 0;
-
         for (int i = 1; i < n; i++) {
             if (a[i] > 0) {
                 max = Math.max(a[i], max * a[i]);
@@ -461,26 +443,21 @@ public class Main {
             }
             m = Math.max(m, max);
         }
-
         System.out.println("Maximum product: " + m);
         sc.close();
     }
 }
 ===============================================
 EQUILIBRIUM SUM
-
 import java.util.*;
-
 public class Main {
     public static int getMaxEquilibriumSumOptimized(int[] arr) {
         int totalSum = 0;
         int leftSum = 0;
         int maxSum = Integer.MIN_VALUE;
-
         for (int i = 0; i < arr.length; i++) {
             totalSum += arr[i];
         }
-
         for (int i = 0; i < arr.length; i++) {
             totalSum -= arr[i];
             if (leftSum == totalSum && leftSum > maxSum) {
@@ -490,7 +467,6 @@ public class Main {
         }
         return maxSum;
     }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the number of elements in the array: ");
@@ -501,16 +477,13 @@ public class Main {
         for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
-
         int maxSum = getMaxEquilibriumSumOptimized(arr);
         System.out.println("Max Equilibrium Sum: " + maxSum);
-
         sc.close();
     }
 }
 ===========================
 MAJORITY ELEMENT
-
 import java.util.*;
 public class Main {
     static void findMajority(int arr[], int n) {
