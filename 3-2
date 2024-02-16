@@ -1,86 +1,52 @@
 import java.util.*;
 
-class Node {
-    int num;
-    Node next;
+public class loopdetect {
+    static class Node {
+        int data;
+        Node next;
 
-    Node(int val) {
-        num = val;
-        next = null;
-    }
-}
-
-class ld {
-    static Node insertNode(Node head, int val) {
-        Node newNode = new Node(val);
-        if (head == null) {
-            head = newNode;
-            return head;
+        Node(int data) {
+            data = data;
+            next = null;
         }
-        Node temp = head;
-        while (temp.next != null)
-            temp = temp.next;
-        temp.next = newNode;
-        return head;
     }
 
-    static void display(Node head) {
-        Node temp = head;
-        while (temp.next != null) {
-            System.out.print(temp.num + "->");
-            temp = temp.next;
-        }
-        System.out.println(temp.num + "->" + "NULL");
+    Node head; 
+
+    void push(int newdata) {
+        Node newNode = new Node(newdata);
+        newNode.next = head;
+        head = newNode;
     }
 
-    static void createCycle(Node head, int a, int b) {
-        int cnta = 0, cntb = 0;
-        Node p1 = head;
-        Node p2 = head;
-        while (cnta != a || cntb != b) {
-            if (cnta != a)
-                p1 = p1.next;
-            ++cnta;
-            if (cntb != b)
-                p2 = p2.next;
-            ++cntb;
-        }
-        p2.next = p1;
-    }
-
-    static boolean cycleDetect(Node head) {
-        if (head == null)
-            return false;
-        Node fast = head;
+    boolean detectLoop() { // Use boolean return type for clarity
         Node slow = head;
+        Node fast = head;
 
-        while (fast.next != null && fast.next.next != null) {
-            fast = fast.next.next;
+        while (fast != null && fast.next != null && fast.next.next!=null) {
             slow = slow.next;
-            if (fast == slow)
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                System.out.println("Loop Found");
                 return true;
+            }
         }
+
+        System.out.println("No Loop detected");
         return false;
     }
 
-    public static void main(String args[]) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        Node head = null;
-        for (int i = 0; i < n; i++) {
-            int m = sc.nextInt();
-            head = insertNode(head, m);
-        }
-        display(head);
-        int a = sc.nextInt();
-        createCycle(head, 1, a);// creating cycle in the list
-        if (cycleDetect(head) == true)
-            System.out.println("Cycle detected");
-        else
-            System.out.println("Cycle not detected");
+    public static void main(String[] args) {
+        loopdetect list = new loopdetect();
+        list.push(20);
+        list.push(41);
+        list.push(5);
+        list.push(10);
+        list.head.next.next.next.next = list.head; // Create a loop
+        list.detectLoop();
     }
 }
-
 #############################################################################
 
 import java.util.*;
