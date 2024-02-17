@@ -216,7 +216,7 @@ MinStack
 /*
 import java.util.*;
 
-public class MinStack {
+class MinStack {
     Stack<Integer> s;
     Stack<Integer> a;
 
@@ -238,15 +238,16 @@ public class MinStack {
             System.out.println("Stack is Empty");
             return;
         }
-        System.out.println("Top most element: " + s.peek());
+        int t=s.peek();
+        System.out.println("Top most element:" + t);
     }
 
     void pop() {
+        int t=s.pop();
         if (s.isEmpty()) {
             System.out.println("Empty stack");
             return;
         }
-        int t = s.pop();
         if (!a.isEmpty() && a.peek().equals(t)) {
             a.pop();
         }
@@ -260,16 +261,17 @@ public class MinStack {
             System.out.println("Number Inserted: " + x);
             return;
         }
+        else{
         s.push(x);
-        System.out.println("Number Inserted: " + x);
+        System.out.println("Number Inserted: " + x);}
 
         if (x <= a.peek()) {
             a.push(x);
         }
     }
-}
+};
 
-public class Main {
+class Main {
     public static void main(String args[]) {
         MinStack s = new MinStack();
         Scanner sc = new Scanner(System.in);
